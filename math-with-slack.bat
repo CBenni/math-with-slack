@@ -108,7 +108,9 @@ IF "%UNINSTALL%" == "-u" (
 
 :: Write main script
 :: TODO: FIX ON WINDOWS.
->"%SLACK_MATHJAX_SCRIPT%" ()
+for /f "delims=: tokens=1*" %%i in ('findstr "%%MWS_VERSION%%" mathjax.js') do (
+  echo %%j
+) >> "%SLACK_MATHJAX_SCRIPT%"
 
 
 :: Check so not already injected
