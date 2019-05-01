@@ -107,51 +107,8 @@ IF "%UNINSTALL%" == "-u" (
 
 
 :: Write main script
-
->"%SLACK_MATHJAX_SCRIPT%" (
-	ECHO.// math-with-slack %MWS_VERSION%
-	ECHO.// https://github.com/fsavje/math-with-slack
-	ECHO.
-	ECHO.document.addEventListener('DOMContentLoaded', function(^) {
-	ECHO.  var mathjax_config = document.createElement('script'^);
-	ECHO.  mathjax_config.type = 'text/x-mathjax-config';
-	ECHO.  mathjax_config.text = `
-	ECHO.    MathJax.Hub.Config({
-	ECHO.      messageStyle: 'none',
-	ECHO.      extensions: ['tex2jax.js'],
-	ECHO.      jax: ['input/TeX', 'output/HTML-CSS'],
-	ECHO.      tex2jax: {
-	ECHO.        displayMath: [['\$\$', '\$\$']],
-	ECHO.        element: 'msgs_div',
-	ECHO.        ignoreClass: 'ql-editor',
-	ECHO.        inlineMath: [['\$', '\$']],
-	ECHO.        processEscapes: true,
-	ECHO.        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-	ECHO.      },
-	ECHO.      TeX: {
-	ECHO.        extensions: ['AMSmath.js', 'AMSsymbols.js', 'noErrors.js', 'noUndefined.js']
-	ECHO.      }
-	ECHO.    }^);
-	ECHO.  `;
-	ECHO.
-	ECHO.  var mathjax_observer = document.createElement('script'^);
-	ECHO.  mathjax_observer.type = 'text/x-mathjax-config';
-	ECHO.  mathjax_observer.text = `
-	ECHO.    var target = document.querySelector('#messages_container'^);
-	ECHO.    var options = { attributes: false, childList: true, characterData: true, subtree: true };
-	ECHO.    var observer = new MutationObserver(function (r, o^) { MathJax.Hub.Queue(['Typeset', MathJax.Hub]^); }^);
-	ECHO.    observer.observe(target, options^);
-	ECHO.  `;
-	ECHO.
-	ECHO.  var mathjax_script = document.createElement('script'^);
-	ECHO.  mathjax_script.type = 'text/javascript';
-	ECHO.  mathjax_script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js';
-	ECHO.
-	ECHO.  document.head.appendChild(mathjax_config^);
-	ECHO.  document.head.appendChild(mathjax_observer^);
-	ECHO.  document.head.appendChild(mathjax_script^);
-	ECHO.}^);
-)
+:: TODO: FIX ON WINDOWS.
+>"%SLACK_MATHJAX_SCRIPT%" ()
 
 
 :: Check so not already injected
